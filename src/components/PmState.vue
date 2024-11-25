@@ -34,9 +34,9 @@
         </ul>
         <div class="nav-item ms-auto">
           <div class="btn-group">
-            <button id="save" class="btn btn-outline-secondary" alt="Botón de guardar">💾</button>
-            <button id="clean" class="btn btn-outline-secondary" alt="Botón de limpiar">🧽</button>
-            <button id="restore" class="btn btn-outline-secondary" alt="Botón de restaurar">↩️</button>
+            <button id="save" class="btn btn-outline-secondary" alt="Botón de guardar" title="Guardar">💾</button>
+            <button id="clean" class="btn btn-outline-secondary" alt="Botón de limpiar" title="Limpiar">🧽</button>
+            <button id="restore" class="btn btn-outline-secondary" alt="Botón de restaurar" title="Restaurar">↩️</button>
           </div>
         </div>
       </div>
