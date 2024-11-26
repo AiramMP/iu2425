@@ -59,6 +59,7 @@
         <span v-if="debug"> {{ gState.searchUserQuery }}</span>
         <FilterOrAddBox v-model:filter="gState.searchUserQuery" :columns="userColumns" @add-element="editUser(-1)"
           addBtnTitle="Añadir nuevo usuario" />
+        <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters">Limpiar Filtros</button>  
         <div class="overflow-y-scroll vh-100">
           <SortableGrid :data="users" :columns="userColumns" :filter="gState.searchUserQuery"
             v-model:sorter="gState.userSorter" @selectOne="(e) => selectOne('user', e)" />
@@ -148,6 +149,47 @@
     @add="(o) => { console.log('adding', o); gState.model.addGroup(o); gState.key++ }"
     @edit="(o) => { console.log('setting', o); gState.model.setGroup(o); gState.key++ }" />
 </template>
+
+<script>
+
+export default {
+  data() {
+    return {
+      // Cualquier otra propiedad del componente
+      debug: true, // Para habilitar o deshabilitar la depuración
+    };
+  },
+  methods: {
+    clearFilters() {
+      // Limpia el filtro según el listado actual
+      switch (gState.currentListing) {
+        case 'users':
+          gState.searchUserQuery.all = '';
+          gState.searchUserQuery.fields = [];
+          break;
+        case 'subjects':
+          gState.searchSubjectQuery.all = '';
+          gState.searchSubjectQuery.fields = [];
+          break;
+        case 'groups':
+          gState.searchGroupQuery.all = '';
+          gState.searchGroupQuery.fields = [];
+          break;
+        case 'locations':
+          gState.searchLocationQuery.all = '';
+          gState.searchLocationQuery.fields = [];
+          break;
+        default:
+          console.warn('No se reconoce el listado actual');
+      }
+
+      // Opcional: Fuerza un redibujado si es necesario
+      gState.key++;
+    },
+    // Otros métodos como editUser, selectOne, etc.
+  },
+};
+</script>
 
 <script setup>
 import FilterOrAddBox from './FilterOrAddBox.vue';
