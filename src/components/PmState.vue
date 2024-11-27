@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#" title="Título de la página PlanDoc">PlanDoc</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" title="Hola">
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" title="Menu Hamburguesa">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
