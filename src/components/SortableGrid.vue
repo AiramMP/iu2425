@@ -32,7 +32,10 @@
               :data-bs-toggle="col.title ? 'tooltip' : null" 
               :data-bs-html="col.title ? true : null"
               :data-bs-title="col.title ? col.title(entry, col.key, o) : null">
-              {{ o.name }}
+              <span
+                class="badge bg-primary"
+                >{{ o.name }}</span
+              >
             </span>
           </template>
           <template v-else>
