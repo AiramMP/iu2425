@@ -12,7 +12,7 @@
           class="form-control" placeholder="Filtrar">
         <input v-else value="(filtrando por campos)" disabled="disabled" type="search" class="form-control"
           placeholder="Filtrar">
-        <span class="input-group-text btn-outline-secondary">🔍</span>
+        <span class="input-group-text btn-outline-secondary" title="Buscar">🔍</span>
         <button type="button" data-bs-toggle="button" class="input-group-text btn btn-outline-secondary b-avanzada"
           @click="toggleAdvanced()" title="Búsqueda avanzada">⚙️</button>
       </div>

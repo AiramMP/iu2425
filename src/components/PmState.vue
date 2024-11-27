@@ -3,31 +3,30 @@
   <!-- Navbar principal -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">PlanDoc</a>
+      <a class="navbar-brand" href="#" title="Título de la página PlanDoc">PlanDoc</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" title="Hola">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a href="#" aria-current="page"
+            <a href="#" aria-current="page" title="sección de Usuarios"
               :class="`nav-link active ${gState.currentListing == 'users' ? 'boxed' : ''}`"
               @click="gState.currentListing = 'users'">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a href="#" aria-current="page"
+            <a href="#" aria-current="page" title="sección de Asignaturas"
               :class="`nav-link active ${gState.currentListing == 'subjects' ? 'boxed' : ''}`"
               @click="gState.currentListing = 'subjects'">Asignaturas</a>
           </li>
           <li class="nav-item">
-            <a href="#" aria-current="page"
+            <a href="#" aria-current="page" title="sección de Grupos"
               :class="`nav-link active ${gState.currentListing == 'groups' ? 'boxed' : ''}`"
               @click="gState.currentListing = 'groups'">Grupos</a>
           </li>
           <li class="nav-item">
-            <a href="#" aria-current="page"
+            <a href="#" aria-current="page" title="sección de Espacios"
               :class="`nav-link active ${gState.currentListing == 'locations' ? 'boxed' : ''}`"
               @click="gState.currentListing = 'locations'">Espacios</a>
           </li>
@@ -54,12 +53,12 @@
         <div>
           <h5 class="d-inline">Usuarios
           </h5>
-          <a class="d-inline d-sm-none details" href="#div-details">↘️</a>
+          <a class="d-inline d-sm-none details" href="#div-details" title="Botón de detalles">↘️</a>
         </div>
         <span v-if="debug"> {{ gState.searchUserQuery }}</span>
         <FilterOrAddBox v-model:filter="gState.searchUserQuery" :columns="userColumns" @add-element="editUser(-1)"
           addBtnTitle="Añadir nuevo usuario" />
-        <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters">Limpiar Filtros</button>  
+        <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>  
         <div class="overflow-y-scroll vh-100">
           <SortableGrid :data="users" :columns="userColumns" :filter="gState.searchUserQuery"
             v-model:sorter="gState.userSorter" @selectOne="(e) => selectOne('user', e)" />
@@ -75,6 +74,7 @@
         <span v-if="debug"> {{ gState.searchSubjectQuery }}</span>
         <FilterOrAddBox v-model:filter="gState.searchSubjectQuery" :columns="subjectColumns" @add-element="editSubject(-1)"
           addBtnTitle="Añadir nueva asignatura" />
+        <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
         <div class="overflow-y-scroll vh-100">
           <SortableGrid :data="subjects" :columns="subjectColumns" :filter="gState.searchSubjectQuery"
             v-model:sorter="gState.subjectSorter" @selectOne="(e) => selectOne('subject', e)" />
@@ -90,6 +90,7 @@
         <span v-if="debug"> {{ gState.searchGroupQuery }}</span>
         <FilterOrAddBox v-model:filter="gState.searchGroupQuery" :columns="groupColumns" @add-element="editGroup(-1)"
           addBtnTitle="Añadir nuevo grupo" />
+        <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
         <div class="overflow-y-scroll vh-100">
           <SortableGrid :data="groups" :columns="groupColumns" :filter="gState.searchGroupQuery"
             v-model:sorter="gState.groupSorter" @selectOne="(e) => selectOne('group', e)" />
@@ -104,6 +105,7 @@
         </div>
         <span v-if="debug"> {{ gState.searchLocationQuery }}</span>
         <FilterOrAddBox v-model:filter="gState.searchLocationQuery" :columns="locationColumns" addBtnTitle="" />
+        <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
         <div class="overflow-y-scroll vh-100">
           <SortableGrid :data="locations" :columns="locationColumns" :filter="gState.searchLocationQuery"
             v-model:sorter="gState.locationSorter" @selectOne="(e) => selectOne('location', e)" />
