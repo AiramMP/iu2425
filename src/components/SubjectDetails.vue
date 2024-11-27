@@ -21,7 +21,12 @@
         <tr>
           <th>Grupos</th>
           <td v-if="subject.groups.length">
-            {{ subject.groups.map(g => gState.resolve(g).name).join(' ') }}
+             <span v-for="group in subject.groups.map(g => gState.resolve(g).name)" v-bind:key="group">
+              <span class="badge bg-primary mx-1">
+                {{ group }}
+              </span>
+             </span>
+              
           </td>
           <td v-else> (ninguno) </td>
         </tr>
