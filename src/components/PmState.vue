@@ -150,7 +150,29 @@
     :isAdd="groupToAddOrEdit.id == -1"
     @add="(o) => { console.log('adding', o); gState.model.addGroup(o); gState.key++ }"
     @edit="(o) => { console.log('setting', o); gState.model.setGroup(o); gState.key++ }" />
+    <!-- 
+    Modal para borrar usuario
+    siempre usamos el mismo, y no se muestra hasta que hace falta
+  -->
+  <DeleteModal ref="deleteUserModalRef" :key="userToDelete.id" :elem="userToDelete"
+    @delete="(o) => { console.log('deleting', o); gState.model.rmUser(o); gState.key++ }"
+    @cancel="(o) => { console.log('cancelled deletion'); gState.key++ }" />
+<!-- 
+    Modal para borrar grupo
+    siempre usamos el mismo, y no se muestra hasta que hace falta
+  -->
+    <DeleteModal ref="deleteGroupModalRef" :key="groupToDelete.id" :elem="groupToDelete"
+    @delete="(o) => { console.log('deleting', o); gState.model.rmGroup(o); gState.key++ }"
+    @cancel="(o) => { console.log('cancelled deletion'); gState.key++ }" />
+    <!-- 
+    Modal para borrar asignatura
+    siempre usamos el mismo, y no se muestra hasta que hace falta
+  -->
+  <DeleteModal ref="deleteSubjectModalRef" :key="subjectToDelete.id" :elem="subjectToDelete"
+    @delete="(o) => { console.log('deleting', o); gState.model.rmSubject(o); gState.key++ }"
+    @cancel="(o) => { console.log('cancelled deletion'); gState.key++ }" />
 </template>
+
 
 <script>
 
@@ -205,6 +227,7 @@ import { ref, computed, onMounted, nextTick } from 'vue';
 import { gState, semesterNames } from '../state.js';
 import * as bootstrap from 'bootstrap'
 import * as U from '../util.js'
+import DeleteModal from './DeleteModal.vue';
 
 // tooltips html para elementos con data-bs-toggle="tooltip"]
 onMounted(() => {
@@ -360,13 +383,28 @@ async function editUser(id) {
   userModalRef.value.show()
 }
 
-function rmUser(id) {
-  gState.model.rmUser(id)
-  if (selected.value.id == id) {
-    selected.value = { id: -1 };
-  }
-  gState.key++
+
+// modales para borrar
+let deleteUserModalRef = ref(null);
+let deleteGroupModalRef = ref(null);
+let deleteSubjectModalRef = ref(null);
+
+let userToDelete = ref(randomUser());
+
+async function rmUser(id) {
+  console.log("now deleting", id)
+  userToDelete.value = gState.resolve(id);
+
+  // da tiempo a Vue para que prepare el componente antes de mostrarlo
+  await nextTick()
+  deleteUserModalRef.value.show()
 }
+
+
+//const randomUser = () => gState.model.Util.randomUser(-1, new Map())
+//let userToAddOrEdit = ref(randomUser());
+
+
 
 /////
 // Asignaturas
@@ -378,25 +416,18 @@ let subjectModalRef = ref(null);
 const randomSubject = () => gState.model.Util.randomSubject(-1, new Map())
 let subjectToAddOrEdit = ref(randomUser());
 
-// usamos id=-1 para crear
-async function editSubject(id) {
-  console.log("now editing", id)
-  subjectToAddOrEdit.value = (id == -1) ?
-    subjectToAddOrEdit.value = randomSubject() :
-    subjectToAddOrEdit.value = gState.resolve(id);
+
+//Borrar
+let subjectToDelete = ref(randomSubject());
+
+async function rmSubject(id) {
+  console.log("now deleting", id)
+  subjectToDelete.value = gState.resolve(id);
+
   // da tiempo a Vue para que prepare el componente antes de mostrarlo
   await nextTick()
-  subjectModalRef.value.show()
+  deleteSubjectModalRef.value.show()
 }
-
-function rmSubject(id) {
-  if (selected.value.id == id) {
-    selected.value = { id: -1 };
-  }  
-  gState.model.rmSubject(id)
-  gState.key++
-}
-
 
 /////
 // Grupos
@@ -420,13 +451,18 @@ async function editGroup(id) {
   groupModalRef.value.show()
 }
 
-function rmGroup(id) {
-  gState.model.rmGroup(id)
-  if (selected.value.id == id) {
-    selected.value = { id: -1 };
-  }
-  gState.key++
+//Borrar
+let groupToDelete = ref(randomGroup());
+
+async function rmGroup(id) {
+  console.log("now deleting", id)
+  groupToDelete.value = gState.resolve(id);
+
+  // da tiempo a Vue para que prepare el componente antes de mostrarlo
+  await nextTick()
+  deleteGroupModalRef.value.show()
 }
+
 
 </script>
 
