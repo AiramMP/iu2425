@@ -49,7 +49,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- columna izquierda (opcional): listado de usuarios -->
-      <div v-if="gState.currentListing == 'users'" id="div-users" class="col-md">
+      <div v-if="gState.currentListing == 'users'" id="div-users" class="col-md p">
         <div>
           <h5 class="d-inline">Usuarios
           </h5>
@@ -59,7 +59,7 @@
         <FilterOrAddBox v-model:filter="gState.searchUserQuery" :columns="userColumns" @add-element="editUser(-1)"
           addBtnTitle="Añadir nuevo usuario" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>  
-        <div class="overflow-y-scroll vh-100">
+        <div class="overflow-y-scroll vh-100 pantalla-pequena-reducir">
           <SortableGrid :data="users" :columns="userColumns" :filter="gState.searchUserQuery"
             v-model:sorter="gState.userSorter" @selectOne="(e) => selectOne('user', e)" />
         </div>
@@ -482,6 +482,11 @@ async function rmGroup(id) {
   font-weight: bold;
 }
 
+
+.pantalla-pequena-reducir {
+  max-height: 40%;
+}
+
 @media(min-width: 995px) {
   .boxed {
     position: relative;
@@ -492,6 +497,10 @@ async function rmGroup(id) {
     border-left: 2px solid black;
     border-right: 2px solid black;
     border-bottom: 2px solid #faffbb;
+  }
+
+  .pantalla-pequena-reducir {
+    max-height: 100%;
   }
 }
 

@@ -5,7 +5,7 @@
   Los filtros son los que genera FilterOrAddBox - prop 'filter'
 -->
 <template>
-  <table v-if="filteredData.length">
+  <table class="tableFixHead" v-if="filteredData.length ">
     <thead>
       <tr>        
         <th v-for="col in columns" :key="col.key"
@@ -17,7 +17,7 @@
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="overflow-y-scroll">
       <tr v-for="entry in filteredData" :key="entry.id" 
         @click="$emit('selectOne', entry.id)">
 
@@ -169,10 +169,20 @@ span.small {
 }
 table {
   margin-top: 10px;
-
 }
-thead>tr {
-  border-bottom: 1px solid gray;
+
+.tableFixHead          
+{
+}
+
+.tableFixHead thead th { 
+  position: sticky; top: 0; z-index: 1;
+  border-bottom: 5px solid gray;
   color: rgb(104, 103, 103);
+}
+
+
+thead {
+  
 }
 </style>

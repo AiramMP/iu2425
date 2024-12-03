@@ -23,7 +23,7 @@
           @input="setEnd(slot)" />
         en
         <input type="text" :id="`${id}-${slot.id}-location`" :name="`${id}-${slot.id}-location`" :value="slot.location"
-          @input="setLocation(slot)" />
+          @input="setLastLocation(slot)" />
         <button type="button" @click="rm(slot)">🗑️</button>
       </div>
       <button type="button" @click="add">➕</button>
@@ -65,6 +65,10 @@ function setEnd(slot) {
 
 function setLocation(slot) {
   slot.location = document.getElementById(`${props.id}-${slot.id}-location`).value
+}
+
+function setLastLocation(slot) {
+  slot.location = document.querySelector('[id*="location"]').value
 }
 
 function add() {
