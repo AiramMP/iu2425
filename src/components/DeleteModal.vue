@@ -3,16 +3,16 @@
       :title="'Borrando '" 
       :name="name">
       <template #body>
-        <form id="addOrEditUserForm" 
+        <form id="addOrEditUserForm"
           @submit.prevent="e => deleteElem()">
           <div class="container">
-            <p class="text-danger">¿Estás seguro de que quieres borrar {{ name }}? ¡Esta acción es <b>irreversible</b>!</p>
+            <p class="text-danger fs-5">¿Estás seguro de que quieres borrar {{ name }}? ¡Esta acción es <b>irreversible</b>!</p>
           </div>
           <button type="submit" class="invisible">Submit</button>
         </form>
       </template>
       <template #footer>
-        <button @click.prevent="() => deleteElem()" class="btn btn-primary">
+        <button @click.prevent="() => deleteElem()" class="btn btn-danger">
           Borrar {{ name }}
         </button>
       </template>

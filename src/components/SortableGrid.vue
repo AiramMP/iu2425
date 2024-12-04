@@ -7,8 +7,8 @@
 <template>
   <table class="tableFixHead pantalla-pequena-reducir" v-if="filteredData.length ">
     <thead>
-      <tr>        
-        <th v-for="col in columns" :key="col.key"
+      <tr style="background-color: white; border-bottom: solid; border-bottom: 5px solid gray;">        
+        <th style="background-color: white; border-bottom: solid; border-bottom: 5px solid gray;" v-for="col in columns" :key="col.key"
           @click="sortBy(col.key)"
           :class="sorter.length && sorter.slice(-1)[0].key == col.key ? 'ghead active' : 'ghead'">
           <span v-if="sorter.find(o => o.key==col.key && o.order==1)" class="arrow asc"></span>
@@ -184,7 +184,6 @@ table {
 
 .tableFixHead thead th { 
   position: sticky; top: 0; z-index: 1;
-  border-bottom: 5px solid gray;
   color: rgb(104, 103, 103);
 }
 

@@ -3,7 +3,7 @@
   <!-- Navbar principal -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#" title="Título de la página PlanDoc">PlanDoc</a>
+      <a id="titulo-brand" class="navbar-brand" href="#" title="Título de la página PlanDoc">PlanDoc</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" title="Menu Hamburguesa">
         <span class="navbar-toggler-icon"></span>
@@ -544,5 +544,15 @@ span.filter {
 
 span.filter:hover {
   border-bottom: 2px dashed blue;
+}
+
+#titulo-brand {
+  animation-name: titulo-animacion;
+  animation-duration: 1000ms;
+}
+
+@keyframes titulo-animacion {
+  from {color: rgba(0, 0, 0, 0);}
+  to {color: black;}
 }
 </style>

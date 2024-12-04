@@ -35,8 +35,12 @@
 
     <h5>Acciones</h5>
     <div class="btn-group">
+      
       <button @click="$emit('editSubject')" class="btn btn-outline-success" title="editar Asignatura">✏️ Editar</button>
-      <button @click="$emit('rmSubject')" class="btn btn-outline-danger" title="Eliminar Asignatura">🗑️ Eliminar</button>
+      <button v-if="!subject.groups.length" @click="$emit('rmSubject')" class="btn btn-outline-danger"
+      title="Eliminar Asignatura">🗑️ Eliminar</button>
+
+      <button v-if="subject.groups.length" @click="$emit('rmSubject')" class="btn btn-outline-danger" disabled title="Eliminar Asignatura">🗑️ Eliminar</button>
     </div>
 </template>
 
