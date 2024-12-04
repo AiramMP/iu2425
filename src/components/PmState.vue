@@ -131,6 +131,14 @@
   </div>
 
   <!-- 
+    Modal para confirmaciones
+    siempre usamos el mismo, y no se muestra hasta que hace falta
+  -->
+  <ConfirmModal ref="confirmModalRef" :isAdd="false"  :text="confirmModalText" :action="confirmAction" />
+    @add="(o) => { console.log('adding', o); gState.model.addUser(o); gState.key++ }"
+    @edit="(o) => { console.log('setting', o); gState.model.setUser(o); gState.key++ }" />
+
+  <!-- 
     Modal para crear/editar usuario
     siempre usamos el mismo, y no se muestra hasta que hace falta
   -->
@@ -223,6 +231,7 @@ import FilterOrAddBox from './FilterOrAddBox.vue';
 import SortableGrid from './SortableGrid.vue';
 import DetailsPane from './DetailsPane.vue';
 import UserModal from './UserModal.vue';
+import ConfirmModal from './ConfirmModal.vue';
 import SubjectModal from './SubjectModal.vue';
 import GroupModal from './GroupModal.vue';
 
@@ -364,6 +373,12 @@ const selectOne = (type, id) => {
   console.log(`selected ${type} ${id}`, element)
   selected.value = element
 }
+
+// Modal para confirmaciones
+/////
+let confirmModalRef = ref(null);
+let confirmModalText = ref("texto"); // texto a mostrar en modal
+let confirmAction = ref(null);       // funcion a la que llamar si se confirma
 
 /////
 // Usuarios
