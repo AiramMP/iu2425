@@ -65,7 +65,7 @@
         </div>
       </div>
       <!-- columna izquierda (opcional): listado de asignaturas -->
-      <div v-if="gState.currentListing == 'subjects'" id="div-subjects" class="col-md">
+      <div v-if="gState.currentListing == 'subjects'" id="div-subjects" class="col-md pantalla-pequena-reducir">
         <div>
           <h5 class="d-inline">Asignaturas
           </h5>
@@ -75,13 +75,13 @@
         <FilterOrAddBox v-model:filter="gState.searchSubjectQuery" :columns="subjectColumns" @add-element="editSubject(-1)"
           addBtnTitle="Añadir nueva asignatura" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
-        <div class="overflow-y-scroll vh-100">
+        <div class="overflow-y-scroll vh-100 pantalla-pequena-reducir-tabla">
           <SortableGrid :data="subjects" :columns="subjectColumns" :filter="gState.searchSubjectQuery"
             v-model:sorter="gState.subjectSorter" @selectOne="(e) => selectOne('subject', e)" />
         </div>
       </div>
       <!-- columna izquierda (opcional): listado de grupos -->
-      <div v-if="gState.currentListing == 'groups'" id="div-groups" class="col-md">
+      <div v-if="gState.currentListing == 'groups'" id="div-groups" class="col-md pantalla-pequena-reducir">
         <div>
           <h5 class="d-inline">Grupos
           </h5>
@@ -91,13 +91,13 @@
         <FilterOrAddBox v-model:filter="gState.searchGroupQuery" :columns="groupColumns" @add-element="editGroup(-1)"
           addBtnTitle="Añadir nuevo grupo" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
-        <div class="overflow-y-scroll vh-100">
+        <div class="overflow-y-scroll vh-100 pantalla-pequena-reducir-tabla">
           <SortableGrid :data="groups" :columns="groupColumns" :filter="gState.searchGroupQuery"
             v-model:sorter="gState.groupSorter" @selectOne="(e) => selectOne('group', e)" />
         </div>
       </div>
       <!-- columna izquierda (opcional): vista de espacios -->
-      <div v-if="gState.currentListing == 'locations'" id="div-locations" class="col-md">
+      <div v-if="gState.currentListing == 'locations'" id="div-locations" class="col-md pantalla-pequena-reducir">
         <div>
           <h5 class="d-inline">Espacios
           </h5>
@@ -107,7 +107,7 @@
         <FilterOrAddBox v-model:filter="gState.searchLocationQuery" :columns="locationColumns" addBtnTitle="" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
         <div class="">
-          <div class="overflow-y-scroll vh-100">
+          <div class="overflow-y-scroll vh-100 pantalla-pequena-reducir-pantalla">
             <SortableGrid :data="locations" :columns="locationColumns" :filter="gState.searchLocationQuery"
               v-model:sorter="gState.locationSorter" @selectOne="(e) => selectOne('location', e)"/>
           </div>
