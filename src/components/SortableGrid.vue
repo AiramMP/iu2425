@@ -5,7 +5,7 @@
   Los filtros son los que genera FilterOrAddBox - prop 'filter'
 -->
 <template>
-  <table class="tableFixHead" v-if="filteredData.length ">
+  <table class="tableFixHead pantalla-pequena-reducir" v-if="filteredData.length ">
     <thead>
       <tr>        
         <th v-for="col in columns" :key="col.key"
@@ -169,10 +169,16 @@ span.small {
 }
 table {
   margin-top: 10px;
+
 }
 
 .tableFixHead          
 {
+}
+
+
+.pantalla-pequena-reducir {
+  max-height: 10rem !important;
 }
 
 .tableFixHead thead th { 

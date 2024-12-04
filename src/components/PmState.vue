@@ -33,9 +33,9 @@
         </ul>
         <div class="nav-item ms-auto">
           <div class="btn-group">
-            <button id="save" class="btn btn-outline-secondary" alt="Botón de guardar" title="Guardar">💾</button>
-            <button id="clean" class="btn btn-outline-secondary" alt="Botón de limpiar" title="Limpiar">🧽</button>
-            <button id="restore" class="btn btn-outline-secondary" alt="Botón de restaurar" title="Restaurar">↩️</button>
+            <button id="save" class="btn btn-outline-secondary" alt="Botón de guardar" title="Guardar">💾 Guardar</button>
+            <button id="clean" class="btn btn-outline-secondary" alt="Botón de limpiar" title="Limpiar">🧽 Limpiar</button>
+            <button id="restore" class="btn btn-outline-secondary" alt="Botón de restaurar" title="Restaurar">↩️ Restaurar</button>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- columna izquierda (opcional): listado de usuarios -->
-      <div v-if="gState.currentListing == 'users'" id="div-users" class="col-md p">
+      <div v-if="gState.currentListing == 'users'" id="div-users" class="col-md p pantalla-pequena-reducir" style="display: block;">
         <div>
           <h5 class="d-inline">Usuarios
           </h5>
@@ -59,9 +59,9 @@
         <FilterOrAddBox v-model:filter="gState.searchUserQuery" :columns="userColumns" @add-element="editUser(-1)"
           addBtnTitle="Añadir nuevo usuario" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>  
-        <div class="overflow-y-scroll vh-100 pantalla-pequena-reducir">
+        <div class="overflow-y-scroll vh-50 pequena-pantalla-reducir-tabla">
           <SortableGrid :data="users" :columns="userColumns" :filter="gState.searchUserQuery"
-            v-model:sorter="gState.userSorter" @selectOne="(e) => selectOne('user', e)" />
+            v-model:sorter="gState.userSorter" @selectOne="(e) => selectOne('user', e)" class="max-height: 100%"/>
         </div>
       </div>
       <!-- columna izquierda (opcional): listado de asignaturas -->
@@ -106,10 +106,13 @@
         <span v-if="debug"> {{ gState.searchLocationQuery }}</span>
         <FilterOrAddBox v-model:filter="gState.searchLocationQuery" :columns="locationColumns" addBtnTitle="" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
-        <div class="overflow-y-scroll vh-100">
-          <SortableGrid :data="locations" :columns="locationColumns" :filter="gState.searchLocationQuery"
-            v-model:sorter="gState.locationSorter" @selectOne="(e) => selectOne('location', e)" />
+        <div class="">
+          <div class="overflow-y-scroll vh-100">
+            <SortableGrid :data="locations" :columns="locationColumns" :filter="gState.searchLocationQuery"
+              v-model:sorter="gState.locationSorter" @selectOne="(e) => selectOne('location', e)"/>
+          </div>
         </div>
+       
       </div>
 
       <!-- columna derecha: detalles de elemento seleccionado -->
@@ -482,9 +485,12 @@ async function rmGroup(id) {
   font-weight: bold;
 }
 
+.pequena-pantalla-reducir-tabla {
+  max-height: 60%;
+}
 
 .pantalla-pequena-reducir {
-  max-height: 40%;
+  max-height: 20rem !important;
 }
 
 @media(min-width: 995px) {
@@ -500,6 +506,10 @@ async function rmGroup(id) {
   }
 
   .pantalla-pequena-reducir {
+    max-height: 99999999rem !important;
+  }
+
+  .pequena-pantalla-reducir-tabla {
     max-height: 100%;
   }
 }
