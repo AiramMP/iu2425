@@ -61,11 +61,11 @@
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>  
         <div class="overflow-y-scroll vh-50 pequena-pantalla-reducir-tabla">
           <SortableGrid :data="users" :columns="userColumns" :filter="gState.searchUserQuery"
-            v-model:sorter="gState.userSorter" @selectOne="(e) => selectOne('user', e)" class="max-height: 100%"/>
+            v-model:sorter="gState.userSorter" @selectOne="(e) => selectOne('user', e)" />
         </div>
       </div>
       <!-- columna izquierda (opcional): listado de asignaturas -->
-      <div v-if="gState.currentListing == 'subjects'" id="div-subjects" class="col-md pantalla-pequena-reducir">
+      <div v-if="gState.currentListing == 'subjects'" id="div-subjects" class="col-md p pantalla-pequena-reducir" style="display: block;">
         <div>
           <h5 class="d-inline">Asignaturas
           </h5>
@@ -75,9 +75,9 @@
         <FilterOrAddBox v-model:filter="gState.searchSubjectQuery" :columns="subjectColumns" @add-element="editSubject(-1)"
           addBtnTitle="Añadir nueva asignatura" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
-        <div class="overflow-y-scroll vh-100 pantalla-pequena-reducir-tabla">
+        <div class="overflow-y-scroll vh-50 pequena-pantalla-reducir-tabla">
           <SortableGrid :data="subjects" :columns="subjectColumns" :filter="gState.searchSubjectQuery"
-            v-model:sorter="gState.subjectSorter" @selectOne="(e) => selectOne('subject', e)" />
+            v-model:sorter="gState.subjectSorter" @selectOne="(e) => selectOne('subject', e)"/>
         </div>
       </div>
       <!-- columna izquierda (opcional): listado de grupos -->
@@ -91,7 +91,7 @@
         <FilterOrAddBox v-model:filter="gState.searchGroupQuery" :columns="groupColumns" @add-element="editGroup(-1)"
           addBtnTitle="Añadir nuevo grupo" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
-        <div class="overflow-y-scroll vh-100 pantalla-pequena-reducir-tabla">
+        <div class="overflow-y-scroll vh-100 pequena-pantalla-reducir-tabla">
           <SortableGrid :data="groups" :columns="groupColumns" :filter="gState.searchGroupQuery"
             v-model:sorter="gState.groupSorter" @selectOne="(e) => selectOne('group', e)" />
         </div>
@@ -107,7 +107,7 @@
         <FilterOrAddBox v-model:filter="gState.searchLocationQuery" :columns="locationColumns" addBtnTitle="" />
         <button class="btn btn-secondary btn-sm mt-2" @click="clearFilters" title="Botón de Limpiar Filtros">Limpiar Filtros</button>
         <div class="">
-          <div class="overflow-y-scroll vh-100 pantalla-pequena-reducir-pantalla">
+          <div class="overflow-y-scroll vh-100 pequena-pantalla-reducir-tabla">
             <SortableGrid :data="locations" :columns="locationColumns" :filter="gState.searchLocationQuery"
               v-model:sorter="gState.locationSorter" @selectOne="(e) => selectOne('location', e)"/>
           </div>
@@ -134,7 +134,7 @@
     Modal para confirmaciones
     siempre usamos el mismo, y no se muestra hasta que hace falta
   -->
-  <ConfirmModal ref="confirmModalRef" :isAdd="false"  :text="confirmModalText" :action="confirmAction" />
+  <ConfirmModal ref="confirmModalRef" :isAdd="false"  :text="confirmModalText" :action="confirmAction" 
     @add="(o) => { console.log('adding', o); gState.model.addUser(o); gState.key++ }"
     @edit="(o) => { console.log('setting', o); gState.model.setUser(o); gState.key++ }" />
 
