@@ -973,17 +973,35 @@ function addGroup(group) {
  * @param {Slot} slot 
  */
 function addSlot(slot) {
-    console.log("añadiendo ", slot);
-    const newSlot = new Slot(lastId++, slot.weekDay, 
-        slot.startTime, slot.endTime, slot.location, slot.semester, slot.groupId);
+    console.log("Añadiendo slot:", slot);
+
+    const group = cache.get(slot.groupId);
+    if (!group) {
+        throw new Error(`El grupo con ID ${slot.groupId} no existe.`);
+    }
+
+    if (!slot.semester) {
+        slot.semester = group.semester;
+        if (!slot.semester) {
+            throw new Error("El slot no tiene un semestre definido y no se puede inferir del grupo.");
+        }
+    }
+
+    const newSlot = new Slot(lastId++, slot.weekDay, slot.startTime, slot.endTime, slot.location, slot.semester, slot.groupId);
+
     getId(newSlot.id, newSlot, false);
 
-    // update group
-    cache.get(slot.groupId).slots.push(newSlot.id)
+    if (!group.slots) {
+        group.slots = [];
+    }
+    group.slots.push(newSlot.id);
 
     state.slots.push(newSlot);
+
+    console.log("Slot añadido con éxito:", newSlot);
     return newSlot;
 }
+
 
 /**
  * Devuelve el 1er slot que solapa con éste en tiempo y, opcionalmente,
