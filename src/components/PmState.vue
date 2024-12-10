@@ -49,7 +49,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- columna izquierda (opcional): listado de usuarios -->
-      <div v-if="gState.currentListing == 'users'" id="div-users" class="col-md p pantalla-pequena-reducir" style="display: block;">
+      <div v-if="gState.currentListing == 'users'" id="div-users" class="col-md p pantalla-pequena-reducir overflow-scroll" style="display: block;">
         <div>
           <h5 class="d-inline">Usuarios
           </h5>
