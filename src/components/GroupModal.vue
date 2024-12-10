@@ -25,7 +25,21 @@
           <SlotBox 
             :start="group.slots" :groupId="group.id"
             id="e-slots" label="Slots" />
-        </div>
+          </div>
+          <button 
+            type="button" 
+            class="btn btn-secondary mt-2" 
+            @click="assignLabSlot"
+          >
+            Asignar Laboratorio (2h)
+          </button>
+          <button 
+            type="button" 
+            class="btn btn-secondary mt-2" 
+            @click="assignClassSlot"
+          >
+            Asignar Aula Teórica (1h)
+        </button>
         <button type="submit" class="invisible">Submit</button>
       </form>
     </template>
