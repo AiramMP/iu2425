@@ -31,13 +31,7 @@
               @click="gState.currentListing = 'locations'">Espacios</a>
           </li>
         </ul>
-        <div class="nav-item ms-auto">
-          <div class="btn-group">
-            <button id="save" class="btn btn-outline-secondary" alt="Botón de guardar" title="Guardar">💾 Guardar</button>
-            <button id="clean" class="btn btn-outline-secondary" alt="Botón de limpiar" title="Limpiar">🧽 Limpiar</button>
-            <button id="restore" class="btn btn-outline-secondary" alt="Botón de restaurar" title="Restaurar">↩️ Restaurar</button>
-          </div>
-        </div>
+        
       </div>
     </div>
   </nav>
